@@ -1,9 +1,5 @@
-#include <cstdlib>
-
-extern "C"
-{
+#include <stdlib.h>
 #include <fvad.h>
-}
 
 int main() {
     Fvad *vad = fvad_new();
