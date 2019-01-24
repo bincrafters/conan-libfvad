@@ -9,13 +9,12 @@ class LibnameConan(ConanFile):
     name = "libfvad"
     version = "1.0"
     description = "Voice activity detection (VAD) library"
-    # topics can get used for searches, GitHub topics, Bintray tags etc. Add here keywords about the library
     topics = ("voice", "vad")
     url = "https://github.com/TMiguelT/conan-libfvad"
     homepage = "https://github.com/dpirch/libfvad"
     author = "Bincrafters <bincrafters@gmail.com>"
-    license = "MIT"  # Indicates license type of the packaged library; please use SPDX Identifiers https://spdx.org/licenses/
-    exports = ["LICENSE.md"]      # Packages the license for the conanfile.py
+    license = "BSD-3-Clause"
+    exports = ["LICENSE.md"]
 
     # Options may need to change depending on the packaged library.
     settings = "os", "arch", "compiler", "build_type"
@@ -33,7 +32,6 @@ class LibnameConan(ConanFile):
         tools.get(archive_url, sha256="09dd6f01ff91458bbcf411bc803b2f7d5825abda626f8adc6eea30c088a3859a")
         extracted_dir = self.name + "-" + self.version
 
-        # Rename to "source_subfolder" is a convention to simplify later steps
         os.rename(extracted_dir, self._source_subfolder)
 
     def build(self):
