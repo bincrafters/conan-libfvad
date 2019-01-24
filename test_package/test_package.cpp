@@ -1,8 +1,11 @@
 #include <cstdlib>
-#include <fvad.h>
 
-int main()
+extern "C"
 {
+#include <fvad.h>
+}
+
+int main() {
     Fvad *vad = fvad_new();
     fvad_set_mode(vad, 2);
     fvad_free(vad);
