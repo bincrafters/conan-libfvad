@@ -1,8 +1,11 @@
 #include <cstdlib>
-#include <iostream>
+#include <fvad.h>
 
 int main()
 {
-    std::cout << "Bincrafters\n";
+    Fvad *vad = fvad_new();
+    fvad_set_mode(vad, 2);
+    fvad_free(vad);
+
     return EXIT_SUCCESS;
 }

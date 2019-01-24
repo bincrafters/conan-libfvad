@@ -37,9 +37,10 @@ class LibnameConan(ConanFile):
         os.rename(extracted_dir, self._source_subfolder)
 
     def build(self):
-        env_build = AutoToolsBuildEnvironment(self)
-        env_build.configure()
-        env_build.make()
+        with tools.chdir(self._source_subfolder):
+            env_build = AutoToolsBuildEnvironment(self)
+            env_build.configure()
+            env_build.make()
 
     def package(self):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
