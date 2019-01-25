@@ -1,4 +1,4 @@
-build: false
+build: off
 
 environment:
     PYTHON: "C:\\Python37"
