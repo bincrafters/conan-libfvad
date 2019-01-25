@@ -46,6 +46,7 @@ class LibfvadConan(ConanFile):
         if not self._autotools:
             self._autotools = AutoToolsBuildEnvironment(self, win_bash=tools.os_info.is_windows)
             args = None
+            if self.settings.os != "Windows":
                 args = [
                     "--enable-static=%s" % ("no" if self.options.shared else "yes"),
                     "--enable-shared=%s" % ("yes" if self.options.shared else "no")
