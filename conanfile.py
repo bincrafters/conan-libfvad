@@ -11,9 +11,9 @@ class LibfvadConan(ConanFile):
     version = "1.0"
     description = "Voice activity detection (VAD) library"
     topics = ("conan", "libvad", "voice", "vad")
-    url = "https://github.com/TMiguelT/conan-libfvad"
+    url = "https://github.com/bincrafters/conan-libfvad"
     homepage = "https://github.com/dpirch/libfvad"
-    author = "Bincrafters <bincrafters@gmail.com>"
+    author = "TMiguelT <ttmigueltt@gmail.com>"
     license = "BSD-3-Clause"
     exports = ["LICENSE.md"]
     settings = "os", "arch", "compiler", "build_type"
