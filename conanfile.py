@@ -26,6 +26,7 @@ class LibfvadConan(ConanFile):
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
+            del self.options.shared
 
     def configure(self):
         del self.settings.compiler.libcxx
@@ -44,10 +45,11 @@ class LibfvadConan(ConanFile):
     def _configure_autotools(self):
         if not self._autotools:
             self._autotools = AutoToolsBuildEnvironment(self, win_bash=tools.os_info.is_windows)
-            args = [
-                "--enable-static=%s" % ("no" if self.options.shared else "yes"),
-                "--enable-shared=%s" % ("yes" if self.options.shared else "no")
-            ]
+            args = None
+                args = [
+                    "--enable-static=%s" % ("no" if self.options.shared else "yes"),
+                    "--enable-shared=%s" % ("yes" if self.options.shared else "no")
+                ]
             self._autotools.configure(args=args)
         return self._autotools
 
