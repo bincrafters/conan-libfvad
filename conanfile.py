@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from conans import ConanFile, CMake, tools, AutoToolsBuildEnvironment
+from conans import ConanFile, tools, AutoToolsBuildEnvironment
+from conans.errors import ConanInvalidConfiguration
 import os
 
 
-class LibnameConan(ConanFile):
+class FvadConan(ConanFile):
     name = "libfvad"
     version = "1.0"
     description = "Voice activity detection (VAD) library"
@@ -33,6 +34,10 @@ class LibnameConan(ConanFile):
         extracted_dir = self.name + "-" + self.version
 
         os.rename(extracted_dir, self._source_subfolder)
+
+    def configure(self):
+        if self.settings.os == "Windows":
+            raise ConanInvalidConfiguration("fvad is not supported on Windows")
 
     def build(self):
         with tools.chdir(self._source_subfolder):
