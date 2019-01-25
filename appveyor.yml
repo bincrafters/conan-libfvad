@@ -5,10 +5,6 @@ environment:
     CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
 
     matrix:
-        - MINGW_CONFIGURATIONS: "4.9@x86_64@seh@posix"
-          CONAN_ARCHS: "x86_64"
-        - MINGW_CONFIGURATIONS: "4.9@x86@dwarf2@posix"
-          CONAN_ARCHS: "x86"
         - MINGW_CONFIGURATIONS: "5@x86_64@seh@posix"
           CONAN_ARCHS: "x86_64"
         - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
