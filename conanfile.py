@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import os
 from conans import ConanFile, tools, AutoToolsBuildEnvironment
+from conans.model.version import Version
+from conans.errors import ConanInvalidConfiguration
 
 
 class LibfvadConan(ConanFile):
@@ -27,6 +29,11 @@ class LibfvadConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        if self.settings.compiler == "gcc" and \
+           Version(self.settings.compiler.version.value) < "5":
+            raise ConanInvalidConfiguration("libfvad requires gcc > 4.9")
+        elif self.settings.compiler == "Visual Studio":
+            raise ConanInvalidConfiguration("libfvad is not supported for Visual Studio")
 
     def source(self):
         archive_url = "{0}/releases/download/v{1}/libfvad-{1}.tar.xz".format(self.homepage, self.version)
@@ -42,7 +49,6 @@ class LibfvadConan(ConanFile):
                 "--enable-shared=%s" % ("yes" if self.options.shared else "no")
             ]
             self._autotools.configure(args=args)
-            self._autotools.make()
         return self._autotools
 
     def build(self):
