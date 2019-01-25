@@ -2,17 +2,21 @@ build: off
 
 environment:
     PYTHON: "C:\\Python37"
+    CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
 
     matrix:
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          CONAN_VISUAL_VERSIONS: 12
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          CONAN_VISUAL_VERSIONS: 14
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-          CONAN_VISUAL_VERSIONS: 15
+        - MINGW_CONFIGURATIONS: "5@x86_64@seh@posix"
+          CONAN_ARCHS: "x86_64"
+        - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
+          CONAN_ARCHS: "x86_64"
+        - MINGW_CONFIGURATIONS: "7@x86_64@seh@posix"
+          CONAN_ARCHS: "x86_64"
+        - MINGW_CONFIGURATIONS: "8@x86_64@seh@posix"
+          CONAN_ARCHS: "x86_64"
 
 install:
   - set PATH=%PYTHON%;%PYTHON%/Scripts/;%PATH%
+  - choco.exe install --no-progress --yes make
   - pip.exe install conan --upgrade
   - pip.exe install conan_package_tools bincrafters_package_tools
   - conan user # It creates the conan data directory
