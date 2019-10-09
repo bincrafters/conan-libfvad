@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from conans import ConanFile, tools, AutoToolsBuildEnvironment
-from conans.model.version import Version
+from conans.tools import Version
 from conans.errors import ConanInvalidConfiguration
 
 
