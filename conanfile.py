@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import os
 from conans import ConanFile, tools, AutoToolsBuildEnvironment
 from conans.tools import Version
@@ -30,6 +28,7 @@ class LibfvadConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
         if self.settings.compiler == "gcc" and \
            Version(self.settings.compiler.version.value) < "5":
             raise ConanInvalidConfiguration("libfvad requires gcc > 4.9")
