@@ -13,7 +13,6 @@ class LibfvadConan(ConanFile):
     homepage = "https://github.com/dpirch/libfvad"
     author = "TMiguelT <ttmigueltt@gmail.com>"
     license = "BSD-3-Clause"
-    exports = ["LICENSE.md"]
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True , False]}
     default_options = {"shared": False, "fPIC": True}
